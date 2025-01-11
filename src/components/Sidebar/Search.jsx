@@ -14,11 +14,8 @@ const handleSearchUser = async(e) => {
 	e.preventDefault()
 	getUserProfile(searchRef.current.value)
 
-	
 }
 
-
-	console.log(user)
 	return (
 		<>
 			<Tooltip hasArrow label={"Search"} placement='right' ml={1} openDelay={500} display={{ base: "block", md: "none" }}>

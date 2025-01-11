@@ -7,10 +7,8 @@ import { Link as RouterLink } from "react-router-dom"
 
 const ProfilePage = () => {
   const { username } = useParams()
-  console.log(username)
   const { userProfile } = useGetProfileByUsername(username)
   
-
   if(!userProfile) return <UserNotFound />
 
   return (

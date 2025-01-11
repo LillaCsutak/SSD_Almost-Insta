@@ -14,12 +14,7 @@ const usePreviewImg = () => {
   const maxFileSizeInBytes = 2 * 1024 * 1024 //2MB
 
 
-    const authUser = useAuthStore(state => state.user)
-    const setAuthUser = useAuthStore(state => state.setUser)
-    const setUserProfile = useUserProfileStore((state) => state.setUserProfile)
-
-    const storageRef = ref(storage,`profilePics/${authUser.uid}`)
-    const userDocRef = doc(firestore,"users",authUser.uid)
+    
 
   const handleImgChange = (e) => {
     const file = e.target.files[0]
@@ -44,7 +39,12 @@ const usePreviewImg = () => {
   }
 
   const saveImgInDatabase = async () => {
-    
+    const authUser = useAuthStore((state) => state.user)
+    const setAuthUser = useAuthStore((state) => state.setUser)
+    const setUserProfile = useUserProfileStore((state) => state.setUserProfile)
+
+    const storageRef = ref(storage,`profilePics/${authUser.uid}`)
+    const userDocRef = doc(firestore,"users",authUser.uid)
 
     let URL = ""
 
@@ -67,7 +67,7 @@ const usePreviewImg = () => {
     }
     }
 
-  return { selectedFile, handleImgChange, saveImgInDatabase }
+  return { selectedFile, handleImgChange, saveImgInDatabase, setSelectedFile }
 }
 
 export default usePreviewImg

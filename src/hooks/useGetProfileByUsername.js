@@ -23,7 +23,7 @@ const useGetProfileByUsername = (username) => {
             })
 
             setUserProfile(userDoc)
-            console.log(userDoc)
+            
         } catch (error) {
             toast("Error", error.message, "error")
         }

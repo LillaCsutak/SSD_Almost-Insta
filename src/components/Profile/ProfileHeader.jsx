@@ -5,8 +5,6 @@ import { useRef } from "react"
 import usePreviewImg from "../../hooks/usePreviewImg"
 import useFollowUser from "../../hooks/useFollowUser"
 
-
-
 const ProfileHeader = () => {
 const {userProfile} = useUserProfileStore()
 const authUser = useAuthStore(state => state.user)
@@ -21,14 +19,14 @@ const {isFollowing,handleFollowUser} = useFollowUser(userProfile?.uid)
 const {selectedFile, handleImgChange, saveImgInDatabase} = usePreviewImg()
 
   return (
-    <Flex gap={{base:4,sm:10}} py={10} direction={{base:"column",sm:"row"}}>
+    <Flex gap={{base:4,sm:10}} py={10} direction={{base:"column",sm:"row"}} alignItems={"center"} > 
         <AvatarGroup size={{base:"xl", md:"2xl"}} justifySelf={"center"} alignSelf={"flex-start"} mx={"auto"}>
             <Avatar src={selectedFile || userProfile.profilePicURL} />
         </AvatarGroup>
 
-        <VStack alignItems={"start"} gap={2} mx={"auto"} flex={1}>
+        <VStack alignItems={"start"} gap={5} mx={"auto"} flex={1}>
             <Flex gap={4} direction={{base:"column",sm:"row"}} justifyContent={{base:"center",sm:"flex-start"}} alignItems={"center"} w={"full"}>
-                <Text fontSize={{base:"sm",sm:"lg"}}>
+                <Text fontSize={{base:"lg",sm:"lg"}} fontWeight={"bold"}>
                 {userProfile.username}
                 </Text>
                 {visitOwnProfile && (
@@ -52,10 +50,7 @@ const {selectedFile, handleImgChange, saveImgInDatabase} = usePreviewImg()
                 )}
             </Flex>
             <Flex alignItems={"center"} gap={{base:2,sm:4}}>
-                <Text>
-                    <Text as="span" fontWeight={"bold"} mr={1}>{userProfile.posts.length}</Text>
-                    Posts
-                </Text>
+                
                 <Text>
                     <Text as="span" fontWeight={"bold"} mr={1}>{userProfile.followers.length}</Text>
                     Followers

@@ -16,7 +16,7 @@ const useShowToast = () => {
         })
     }, 
     [toast]
-    )
+)
 
   return showToast
 }

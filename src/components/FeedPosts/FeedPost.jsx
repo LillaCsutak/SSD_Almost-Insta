@@ -1,15 +1,24 @@
 import PostFooter from "./PostFooter"
 import PostHeader from "./PostHeader"
 import { Box, Image } from "@chakra-ui/react"
+import useGetUserProfileById from "../../hooks/useGetUserProfileById"
 
-const FeedPost = ({img,username,avatar}) => {
+const FeedPost = ({post}) => {
+  
+  const {userProfile} = useGetUserProfileById(post.createdBy)
+  
   return (
     <>
-    <PostHeader username={username} avatar={avatar}/>
+    {userProfile && (
+      <PostHeader post={post} creatorProfile={userProfile}/>
+    )}
+    
     <Box my={2}>
-        <Image src={img} />
+        <Image src={post.imageURL} />
     </Box>
-    <PostFooter username={username}/>
+    { userProfile && (
+      <PostFooter post={post} creatorProfile={userProfile}/>
+    )}
     </>
   )
 }
